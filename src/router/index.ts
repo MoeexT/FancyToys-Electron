@@ -4,22 +4,43 @@ import {
   createWebHistory,
   RouteRecordRaw,
 } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Layout from "../layout/Layout.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    component: Layout,
+    redirect: "/nursery",
+    children: [
+      {
+        path: "/nursery",
+        name: "nursery",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/Nursery"),
+      },
+      {
+        path: "/teleport",
+        name: "teleport",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/Teleport"),
+      },
+      {
+        path: "/fancy-server",
+        name: "fancy-server",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+          import(/* webpackChunkName: "about" */ "@/views/FancyServer"),
+      },
+    ],
   },
 ];
 
